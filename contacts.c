@@ -340,7 +340,7 @@ void Qur(TELEBOOK temp[], int n)
     if (n == 0)
     {
         printf("No recorder\n");
-        return 0;
+        return;
     }
 
     int i = 0, j = 0;
@@ -366,7 +366,7 @@ void Qur(TELEBOOK temp[], int n)
     else
     {
         printf("#ERROR# Enter 'name' or 'phonenumber'\n");  //go back !!!!!!!!!!!!!
-        return 0;
+        return;
     }
 
     ourNum = Locate(temp, n, ourStr, nameOrPhoneNumber);
