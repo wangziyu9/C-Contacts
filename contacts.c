@@ -3,6 +3,10 @@
 #include<stdlib.h>  
 #define N 1000
 #define L 100   //the max lens of string
+#define HEAD printf("======================================================\n");
+    printf("+----+----------+---------------+--------------------+\n");
+    printf("|num |name      |phonenum       |adress              |\n");
+    printf("+----+----------+---------------+--------------------+\n");
 
 typedef struct telebook
 {
