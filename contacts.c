@@ -1,7 +1,7 @@
 #include<string.h>
 #include<stdio.h>   
 #include<stdlib.h>  
-#define N 1000
+#define N 1000  //the max contacts counts
 #define L 100   //the max lens of string
 #define HEAD printf("======================================================\n");
              printf("+----+----------+---------------+--------------------+\n");
