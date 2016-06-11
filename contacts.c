@@ -1,12 +1,8 @@
 #include<string.h>
 #include<stdio.h>   
 #include<stdlib.h>  
-#define N 1000  //the max contacts counts
+#define N 1000
 #define L 100   //the max lens of string
-#define HEAD printf("======================================================\n");
-             printf("+----+----------+---------------+--------------------+\n");
-             printf("|num |name      |phonenum       |adress              |\n");
-             printf("+----+----------+---------------+--------------------+\n");
 
 typedef struct telebook
 {
@@ -18,6 +14,7 @@ typedef struct telebook
 
 int numLen = 4, nameLen = 10, phonenumLen = 15, addressLen = 20, maxLen = L;
 
+void printMenu();
 void printheader();
 void output(TELEBOOK temp[], int num);  //
 void printdata(TELEBOOK pp);
@@ -53,12 +50,13 @@ int main()
         若选择6，则调用Insert（）函数，执行插入记录操作；
         若选择7，则调用SelectSort（）函数，执行按升序排序记录的操作；
         若选择8，则调用Save（）函数，执行存储记录的操作；若输入除此之外的数，则调用Wrong（）函数，给出按键错误的提示*/
-        
+        printMenu();
         stringinput(keyboardInput, 2, "Please Enter a number(0 ~8)");
 
         //puts(keyboardInput);
         if (keyboardInput[0] <= '9' && keyboardInput >= '0' && keyboardInput[1] == '\0')
         {
+            printMenu();
             sscanf(keyboardInput, "%d", &keyInputNum);
             printf("There are %d recorders\n", n);
             switch (keyInputNum)
@@ -94,6 +92,28 @@ int main()
             printf("#ERROR# Enter a number 0 ~ 8\n");
     }
     return 0;
+}
+
+void printMenu()
+{
+    system("cls"); //调用DOS命令，清屏.与clrscr()功能相同
+    
+    printf("                        Welcom\n");
+    printf("                                                                 \n");
+    printf("    ************************* main menu *************************\n");
+    printf("    *                                                           *\n");
+    printf("    *           1 add contact            2 print contants       *\n");
+    printf("    *                                                           *\n");
+    printf("    *           3 delete contant         4 search contant       *\n");
+    printf("    *                                                           *\n");
+    printf("    *           5 edit contant           6 insert contant       *\n");
+    printf("    *                                                           *\n");
+    printf("    *           7 sort contant           8 save                 *\n");
+    printf("    *                                                           *\n");
+    printf("    *           0 exit                                          *\n");
+    printf("    *                                                           *\n");
+    printf("    *************************************************************\n");
+    //cprintf()送格式化输出至文本窗口屏幕中
 }
 
 int Add(TELEBOOK temp[], int n)
@@ -413,4 +433,5 @@ void Save(TELEBOOK temp[], int n)
 int Insert(TELEBOOK temp[], int num)
 {
     printf("I do not know what do you mean...\n");
+    return 0;
 }
