@@ -1,0 +1,187 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define HEAD "|--------name--------|--------number------|-mark1|-mark2|-mark3|\n"
+#define N 100
+
+typedef struct{
+    char name[N];
+    char num[N];
+    int mark1;
+    int mark2;
+    int mark3;
+    int sum;
+    double avg;
+}STU;
+
+void sort(STU * student, int n);
+int input(STU * student, int n);
+void search(STU * student, int n);
+void printRecord(STU * student);
+void printAll(STU * student, int n);
+void printEst(STU * student, int n);
+int main()
+{
+    STU student[N];
+    int keyInput = 0;
+    int n = 0;
+    printf("1 add\n2 search\n3 print records\n4 Highest\n0 quit\n>>>");
+    while (scanf("%d", &keyInput) && keyInput != 0)
+    {
+        switch (keyInput)
+        {
+            case 1:
+                n = input(student, n);
+                sort(student, n);
+                break;
+            case 2:
+                search(student, n);
+                break;
+            case 3:
+                printAll(student, n);
+                break;
+            case 4:
+                printEst(student, n);
+                
+                break;
+        }
+        printf("1 add\n2 search\n3 print records\n4 Highest\n0 quit\n>>>");
+    }
+
+    if (n != 0)
+        //printf("Highest %lf\nLowest: %lf\n", student[0].avg, student[n - 1].avg);
+        printf("quit\n");
+    else
+        printf("no record\n");
+    
+    return 0;
+}
+
+int input(STU * student, int n)
+{
+    printf("input name, number, mark1, mark2, mark3\n>>>");
+    scanf(" %s %s%d%d%d", &student[n].name, &student[n].num, &student[n].mark1, &student[n].mark2, &student[n].mark3);
+    student[n].sum = student[n].mark1 + student[n].mark2 + student[n].mark3;
+    student[n].avg = ((double)student[n].sum) / 3;
+    return n + 1;
+}
+
+void sort(STU * student, int n)
+{
+    int i = 0, j = 0;
+    STU temp;
+    for (i = 0; i < n; i++)
+    {
+        for (j = i; j < n; j++)
+        {
+            if (student[i].sum < student[j].sum)
+            {
+                temp = student[j];
+                student[j] = student[i];
+                student[i] = temp;
+            }
+        }
+    }
+}
+
+void search(STU * student, int n)
+{
+    if (n == 0)
+    {
+        printf("no data\n");
+        return;
+    }
+
+    char nameorNumber[N];
+    char srhStr[N];
+    int i = 0;
+
+    printf("which type do you want to search? 'name' or 'number'?\n>>>");
+    scanf(" %s", nameorNumber);
+
+    if (strcmp(nameorNumber, "name") == 0)
+    {
+        printf("Please Enter the name\n>>>");
+        scanf(" %s", srhStr);
+        for (i = 0; i < n; i++)
+        {
+            if (strcmp(srhStr, student[i].name) == 0)
+            {
+                printf(HEAD);
+                printRecord(student, i);
+                return;
+            }
+        }
+    }
+
+    else if (strcmp(nameorNumber, "number") == 0)
+    {
+        printf("Please Enter the number\n>>>");
+        scanf(" %s", srhStr);
+        for (i = 0; i < n; i++)
+        {
+            if (strcmp(srhStr, student[i].num) == 0)
+            {
+                printf(HEAD);
+                printRecord(student, i);
+                return;
+            }
+        }
+    }
+
+    else
+    {
+        printf("'name' or 'phonenumber'");  //go back
+        return;
+    }
+
+
+    printf("Not found\n");
+    return;
+}
+
+void printRecord(STU * student, int i)
+{
+    printf("|%20s|%20s|%6d|%6d|%6d|\n", student[i].name, student[i].num, student[i].mark1, student[i].mark2, student[i].mark3);
+    
+}
+
+void printAll(STU * student, int n)
+{
+    if (n == 0)
+    {
+        printf("norecord\n");
+        return;
+    }
+
+    int i = 0;
+
+    printf(HEAD);
+    for (i = 0; i < n; i++)
+    {
+        printRecord(student, i);
+    }
+}
+
+void printEst(STU * student, int n)
+{
+    if (n == 0)
+    {
+        printf("no record\n");
+        return;
+    }
+
+    if (n == 1)
+    {
+        printf("only 1 record\n");
+        return;
+    }
+
+    printf("Highest %lf\n", student[0].avg);
+    printf(HEAD);
+    printRecord(student, 0);
+
+    printf("Lowest: %lf\n", student[n - 1].avg);
+    printf(HEAD);
+    printRecord(student, n - 1);
+}
