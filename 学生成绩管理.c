@@ -71,7 +71,7 @@ void load(STU s[], int *nptr)
 {
     FILE *fp;
     int i;
-    fp=fopen("f:\\student.dat", "r");
+    fp=fopen("d:\\student.dat", "r");
     for(i=0; fread(&s[i], sizeof(STU), 1, fp)!=0; i++);
     *nptr=i;
     fclose(fp);
@@ -79,7 +79,7 @@ void load(STU s[], int *nptr)
 void save(STU s[], int n)
 {
     FILE *fp;
-    fp=fopen("f:\\student.dat", "w");
+    fp=fopen("d:\\student.dat", "w");
     fwrite(s, n*sizeof(s[0]), 1, fp);
     fclose(fp);
 }
