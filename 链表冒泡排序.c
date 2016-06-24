@@ -15,6 +15,20 @@ void add(NODE h);
 void sort(NODE h);
 void printAll(NODE h);
 
+/*
+void add(NODE h);
+void sort(NODE h);
+void printAll(NODE h);
+void load(NODE H);
+void save(NODE H);
+void SaveRecord(FILE *fp, NODE p);
+void display(void);
+void edit(NODE head);
+void search(NODE head);
+void del(NODE head);
+void quit(NODE head);
+*/
+
 int main()
 {
     NODE head;
